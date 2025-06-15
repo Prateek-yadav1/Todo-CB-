@@ -1,0 +1,128 @@
+body {
+    background: #f4f8fb;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    color: #007acc;
+    margin-top: 40px;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+.task {
+    background: #fff;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task form {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+}
+
+#newtask {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    outline: none;
+    transition: border 0.2s;
+    background: #f7fafc;
+}
+
+#newtask:focus {
+    border-color: #007acc;
+    background: #fff;
+}
+
+#addtask {
+    padding: 14px 28px;
+    background: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+#addtask:hover {
+    background: #005fa3;
+    transform: scale(1.04);
+}
+
+.taskList {
+    max-width: 600px;
+    margin: 24px auto 0 auto;
+    padding: 0 24px;
+}
+/* ...existing styles... */
+
+.taskList {
+    max-width: 600px;
+    margin: 24px auto 0 auto;
+    padding: 0 24px;
+}
+
+.taskList ul, .taskList {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    background: #f7fafc;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    font-size: 1.15rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    transition: background 0.2s;
+    gap: 12px;
+}
+
+.todo-item span {
+    flex: 1;
+    word-break: break-word;
+}
+
+.todo-item.done span {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.todo-item button {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 6px 10px;
+    transition: background 0.15s;
+    margin-left: 4px;
+}
+
+.arrow-btn:hover {
+    background: #e0f0ff;
+}
+
+.delete-btn:hover {
+    background: #ffe0e0;
+    color: #d00;
+}
