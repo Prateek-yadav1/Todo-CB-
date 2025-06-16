@@ -1,30 +1,31 @@
 const { v4: uuidv4 } = require('uuid');
+const Todo = require('../models/todo');
 
 // let todos=[
   
 // ];
-const Todo=require('../database/script/database');
+// const Todo=require('../database/script/database');
 
-module.exports.getGetTodos=(req,res,next)=>{
-// res.send(todos);
-Todo.getTodos()
-.then((data)=>{
-    res.send(data);
-})
-.catch((err)=>{
-    res.send(`Unable to fetch todos,${err.message}`);
-})
+module.exports.getGetTodos=async (req,res,next)=>{
+try{
+let data=await Todo.getTodos();
+console.log('todos requesteed are:',data);
+        res.json(data); }
+catch(err){
+next(err);
 }
-module.exports.postAddTodo=(req,res,next)=>{
-const {name}=req.body;
+}
+module.exports.postAddTodo=(req,res)=>{
+//this is responsible to add a new task to the database 
+const { name } = req.body; // Extracting the name from the request body
 Todo.addTodo(name)
-.then((msg)=>{
-    console.log(msg);
-    res.redirect('/gettodos');//redirect sends a get request to the given path
-})
-.catch((err)=>{
-    res.send(`Unable to add todo,${err.message}`);})
-
+    .then((msg) => {
+        console.log('Todo added successfully:', msg);
+res.redirect('/gettodos'); // Redirecting to the getTodos route        
+          })
+    .catch(err => {
+        res.send('Error adding todo:', err);
+    });
 }
 
 
@@ -38,13 +39,14 @@ Todo.addTodo(name)
 // }
 
 module.exports.postDeleteTodo = (req, res, next) => {
-    const { id } = req.body;
-    Todo.deleteTodo(id)
-        .then((msg) => {
-            console.log(msg);
-            res.redirect('/gettodos'); // redirect sends a get request to the given path
-        })
-        .catch((err) => {
-            res.send(`Unable to delete todo,${err.message}`);
-        });
+const { id } = req.body; // Extracting the id from the request body
+Todo.deleteTodo(id)
+    .then((msg) => {
+        console.log('Todo deleted successfully',msg);
+        res.redirect('/gettodos'); // Redirecting to the getTodos route
+    })
+    .catch(err => {
+        console.error('Error deleting todo:', err);
+        res.status(500).send('Error deleting todo');
+    });
 }
